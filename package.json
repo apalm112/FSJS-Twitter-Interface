@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/apalm112/Twitter-Interface#readme",
   "dependencies": {
+    "express": "^4.15.4",
     "twit": "^2.2.9"
   }
 }
