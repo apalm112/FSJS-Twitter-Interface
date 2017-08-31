@@ -1,5 +1,6 @@
-api-with-node-v1/
-config.js
+.gitignore
+index.html
+my-config.js
 
 # Logs
 logs1
