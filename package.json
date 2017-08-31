@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/apalm112/Twitter-Interface/issues"
   },
-  "homepage": "https://github.com/apalm112/Twitter-Interface#readme"
+  "homepage": "https://github.com/apalm112/Twitter-Interface#readme",
+  "dependencies": {
+    "twit": "^2.2.9"
+  }
 }
