@@ -10,9 +10,8 @@ head
 	link(rel='stylesheet', href='static/css/global.css')
 body
 	include includes/header.pug
-		block main
-			h1= message
-			
-			p= text
+	.bounds.app--body
+		.app--section--header
+			block main
 
 	include includes/footer.pug

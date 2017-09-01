@@ -1,10 +1,12 @@
 const express = require('express');
 const twit = require('twit');
+const bodyParser = require('body-parser');
 const tweet = require('./my-config');
 
 const app = express();
-const port = `4000`;
+const port = process.env.PORT || 4000;
 
+app.use(bodyParser.urlencoded({ extended: false}));
 
 //	This line tells the express to use the provided HTML, CSS, Image files.
 app.use('/static', express.static('public'));
@@ -12,8 +14,15 @@ app.use('/static', express.static('public'));
 // This tells express to use Pug:
 app.set('view engine', 'pug');
 
-app.get('/', (req, res) => {
-	res.render('layout', { message:  'Twitter Interface Project', text: 'Render text here.'});
+app.get('/', (req, res, next) => {
+	res.render('heading');
+	next();
+});
+
+app.use((err, req, res, next) => {
+	res.locals.error = err;
+	res.status(err.status);
+	res.render('error');
 });
 
 app.listen(port, () => {
