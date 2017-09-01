@@ -1,8 +1,42 @@
-const tweet = require('./config');
+const express = require('express');
+const twit = require('twit');
+const tweet = require('./my-config');
+
+const app = express();
+const port = `4000`;
+
+
+//	This line tells the express to use the provided HTML, CSS, Image files.
+app.use('/static', express.static('public'));
+
+// This tells express to use Pug:
+app.set('view engine', 'pug');
+
+app.get('/', (req, res) => {
+	res.render('layout', { message:  'Twitter Interface Project', text: 'Render text here.'});
+});
+
+app.listen(port, () => {
+	console.log(`The application is running on localhost:${port}`);
+});
+
+
+
+
+
+
+
 
 
 //	Study the Twitter REST API docs to find which methods will provide the information you need to fill out the templates, based on the sample layout. The docs are linked in the project resources.
 
+//	TODO The template should have spaces for:
+/*your 5 most recent tweets
+your 5 most recent friends
+your 5 most recent private messages
+
+It should also include your personal Twitter name and profile image at the top of the screen.
+Styling is not the important part of this project. Craft your template markup to take advantage of the CSS we’ve provided you. Knowing how to work with someone else’s styles is a very important skill as a full-stack developer. Pay attention to class names, inheritance, and so on. Try to avoid element types that are not used in the provided HTML and CSS files.*/
 
 //	TODO:	Using Node and Express, request the data you need from Twitter’s API, render it in your template, and send it to the client at the “/” route.
 
