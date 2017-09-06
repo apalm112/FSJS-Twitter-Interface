@@ -14,23 +14,20 @@ app.use('/static', express.static('public'));
 // This tells express to use Pug:
 app.set('view engine', 'pug');
 
-app.get('/', (req, res, next) => {
-	res.render('heading');
-	next();
-});
 
-app.use((err, req, res, next) => {
+
+/*app.use((err, req, res, next) => {
 	res.locals.error = err;
 	res.status(err.status);
 	res.render('error');
 });
-
+*/
 // GET statuses/user_timeline
 tweet.get('statuses/user_timeline', { count: 14, exclude_replies: true }, (err, data, res) => {
 	console.log('TIMELINE:');
 	console.log(data[0].user.name);
-	console.log(data[0].user.screen_name);
-	console.log(data[0].user.profile_image_url);
+	let screen_name = data[0].user.screen_name;
+	let user_prof_img = data[0].user.profile_image_url;
 	console.log(data[0].user.created_at);
 	console.log(data[0].text);
 	console.log(data[0].retweeted_status.retweet_count);	// Retweet
@@ -47,22 +44,18 @@ tweet.get('friends/list', { screen_name: '@apalm112', count: 5 }, (err, data, re
 // GET direct_messages
 tweet.get('direct_messages', { count: 2 }, (err, data, res) => {
 	console.log('DM:');
-console.log(data[0].sender.name);
-console.log(data[0].sender.profile_image_url);
+	console.log(data[0].sender.name);
+	console.log(data[0].sender.profile_image_url);
 	console.log(data[0].text);
 	console.log(data[0].sender.created_at);
 });
-
+app.get('/', (req, res, next) => {
+	res.render('layout');
+	// next();
+});
 app.listen(port, () => {
 	console.log(`The application is running on localhost:${port}`);
 });
-
-
-
-
-
-
-
 
 
 //	Study the Twitter REST API docs to find which methods will provide the information you need to fill out the templates, based on the sample layout. The docs are linked in the project resources.
@@ -76,8 +69,6 @@ It should also include your personal Twitter name and profile image at the top o
 Styling is not the important part of this project. Craft your template markup to take advantage of the CSS we’ve provided you. Knowing how to work with someone else’s styles is a very important skill as a full-stack developer. Pay attention to class names, inheritance, and so on. Try to avoid element types that are not used in the provided HTML and CSS files.*/
 
 //	TODO:	Using Node and Express, request the data you need from Twitter’s API, render it in your template, and send it to the client at the “/” route.
-// GET account/verifiy_credentials
-
 
 /*	TODO:
 Each rendered result must include all of the information seen in the sample layout:
