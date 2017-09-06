@@ -1,5 +1,5 @@
 const express = require('express');
-const twit = require('twit');
+const Twit = require('twit');
 const bodyParser = require('body-parser');
 const tweet = require('./my-config');
 
@@ -25,6 +25,34 @@ app.use((err, req, res, next) => {
 	res.render('error');
 });
 
+// GET statuses/user_timeline
+tweet.get('statuses/user_timeline', { count: 14, exclude_replies: true }, (err, data, res) => {
+	console.log('TIMELINE:');
+	console.log(data[0].user.name);
+	console.log(data[0].user.screen_name);
+	console.log(data[0].user.profile_image_url);
+	console.log(data[0].user.created_at);
+	console.log(data[0].text);
+	console.log(data[0].retweeted_status.retweet_count);	// Retweet
+	console.log(data[0].retweeted_status.favorite_count);	// Like
+});
+	// GET friends/ids
+tweet.get('friends/list', { screen_name: '@apalm112', count: 5 }, (err, data, res) => {
+	console.log('FOLLOWING:');
+	console.log(data.users[2].name);
+	console.log(data.users[2].screen_name);
+	console.log(data.users[2].profile_image_url);
+});
+
+// GET direct_messages
+tweet.get('direct_messages', { count: 2 }, (err, data, res) => {
+	console.log('DM:');
+console.log(data[0].sender.name);
+console.log(data[0].sender.profile_image_url);
+	console.log(data[0].text);
+	console.log(data[0].sender.created_at);
+});
+
 app.listen(port, () => {
 	console.log(`The application is running on localhost:${port}`);
 });
@@ -48,6 +76,8 @@ It should also include your personal Twitter name and profile image at the top o
 Styling is not the important part of this project. Craft your template markup to take advantage of the CSS we’ve provided you. Knowing how to work with someone else’s styles is a very important skill as a full-stack developer. Pay attention to class names, inheritance, and so on. Try to avoid element types that are not used in the provided HTML and CSS files.*/
 
 //	TODO:	Using Node and Express, request the data you need from Twitter’s API, render it in your template, and send it to the client at the “/” route.
+// GET account/verifiy_credentials
+
 
 /*	TODO:
 Each rendered result must include all of the information seen in the sample layout:
