@@ -1,62 +1,36 @@
 const express = require('express');
-const Twit = require('twit');
 const bodyParser = require('body-parser');
-const tweet = require('./my-config');
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(bodyParser.urlencoded({ extended: false}));
 
-//	This line tells the express to use the provided HTML, CSS, Image files.
+//	This line tells the express to use the provided CSS, Image files.
 app.use('/static', express.static('public'));
 
 // This tells express to use Pug:
 app.set('view engine', 'pug');
 
+const twitRoutes = require('./twitter.js');
 
+app.use(twitRoutes);
 
-/*app.use((err, req, res, next) => {
-	res.locals.error = err;
-	res.status(err.status);
-	res.render('error');
-});
-*/
-// GET statuses/user_timeline
-tweet.get('statuses/user_timeline', { count: 14, exclude_replies: true }, (err, data, res) => {
-	console.log('TIMELINE:');
-	console.log(data[0].user.name);
-	let screen_name = data[0].user.screen_name;
-	let user_prof_img = data[0].user.profile_image_url;
-	console.log(data[0].user.created_at);
-	console.log(data[0].text);
-	console.log(data[0].retweeted_status.retweet_count);	// Retweet
-	console.log(data[0].retweeted_status.favorite_count);	// Like
-});
-	// GET friends/ids
-tweet.get('friends/list', { screen_name: '@apalm112', count: 5 }, (err, data, res) => {
-	console.log('FOLLOWING:');
-	console.log(data.users[2].name);
-	console.log(data.users[2].screen_name);
-	console.log(data.users[2].profile_image_url);
-});
-
-// GET direct_messages
-tweet.get('direct_messages', { count: 2 }, (err, data, res) => {
-	console.log('DM:');
-	console.log(data[0].sender.name);
-	console.log(data[0].sender.profile_image_url);
-	console.log(data[0].text);
-	console.log(data[0].sender.created_at);
-});
 app.get('/', (req, res, next) => {
 	res.render('layout');
-	// next();
+	next();
 });
+
+// NOT WORKING
+// app.use((err, req, res) => {
+// 	// res.locals.error = err;
+// 	// res.status(err.status);
+// 	res.render('error');
+// });
+
 app.listen(port, () => {
 	console.log(`The application is running on localhost:${port}`);
 });
-
 
 //	Study the Twitter REST API docs to find which methods will provide the information you need to fill out the templates, based on the sample layout. The docs are linked in the project resources.
 
