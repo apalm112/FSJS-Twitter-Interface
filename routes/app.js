@@ -16,18 +16,6 @@ const twitRoutes = require('./twitter.js');
 
 app.use(twitRoutes);
 
-/*app.get('/', (req, res, next) => {
-	// res.render('layout');
-	next();
-});*/
-
-// NOT WORKING
-// app.use((err, req, res) => {
-// 	// res.locals.error = err;
-// 	// res.status(err.status);
-// 	res.render('error');
-// });
-
 app.listen(port, () => {
 	console.log(`The application is running on localhost:${port}`);
 });

@@ -8,11 +8,9 @@ let dm = [];
 
 router.get('/', (req, res, next) => {
 
-
 	// TODO:  use async.parallel() ???
 	//	https://caolan.github.io/async/docs.html#parallel
 	//		use pug mixins????
-
 
 
 	// GET statuses/user_timeline
@@ -27,7 +25,6 @@ router.get('/', (req, res, next) => {
 		let fav_count = data[0].retweeted_status.favorite_count;	// Like
 */
 		timeline = data;
-		console.log(timeline[0].user.profile_image_url);
 	});
 
 		// GET friends/ids
@@ -36,7 +33,7 @@ router.get('/', (req, res, next) => {
 /*		let name = data.users[1].name;
 		let screen_name  = data.users[1].screen_name;
 		let profile_image_url = data.users[1].profile_image_url;
-*/		friends = data;
+*/		friends = data.users;
 	});
 
 	// GET direct_messages
