@@ -1,16 +1,16 @@
 .grid-33
   .app--section
     ul.app--message--list
-      if dm
-        each message in dm
-          li
-            h3
-              | Conversation with 
-              a #{timeline[0].user.name}
-            |             
-            ul.app--message--conversation
+      li
+        h3
+          | Conversation with 
+          a #{timeline[0].user.name}
+        |             
+        ul.app--message--conversation
+          if dm
+            each message in dm
               li.app--message
-                .app--avatar(style='background-image: url(#{message.sender.profile_image_url})')
+                .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
                   //- img(src='${profile_image_url}')
                 |                
                 p.app--message--text #{message.text} 
