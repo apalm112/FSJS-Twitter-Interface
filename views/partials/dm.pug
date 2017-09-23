@@ -9,11 +9,22 @@
         ul.app--message--conversation
           if dm
             each message in dm
-              li.app--message
-                .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
-                  //- img(src='${profile_image_url}')
-                |                
-                p.app--message--text #{message.text} 
-                |                 
-                p.app--message--timestamp #{message.sender.created_at}
-              |               
+              if message.id === dm[0].id
+                li.app--message
+                  .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
+                    //- img(src='${profile_image_url}')
+                  |                
+                  p.app--message--text #{message.text} 
+                  |                 
+                  p.app--message--timestamp #{message.sender.created_at}
+                |               
+              else
+                li.app--message--me
+                  .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
+                    img(src='../public/images/m-spore.png')
+                  |             
+                  p.app--message--text
+                    | #{message.text}
+                  |             
+                  p.app--message--timestamp #{message.sender.created_at}
+                | 

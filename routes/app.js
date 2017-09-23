@@ -17,10 +17,6 @@ let timeline = [];
 let friends = [];
 let dm = [];
 
-	// TODO:  use async.parallel() ???
-	//	https://caolan.github.io/async/docs.html#parallel
-	//		OR callbacks-async?
-
 // GET statuses/user_timeline
 tweet.get('statuses/user_timeline', { count: 5, exclude_replies: true })
 	.catch(function (err) {
@@ -50,7 +46,6 @@ tweet.get('friends/list', { screen_name: '@apalm112', count: 5 })
 	let profile_image_url = data.users[1].profile_image_url;
 	*/
 		friends = result.data.users;
-		console.log(friends[0].profile_image_url);
 	});
 
 // GET direct_messages
@@ -64,6 +59,8 @@ tweet.get('direct_messages', { count: 5 })
 	let sender_time = data[0].sender.created_at;
 	*/
 		dm = result.data;
+		console.log(dm[0].id);
+		console.log(dm[1].id);
 	});
 
 app.use('/', (req, res, next) => {
