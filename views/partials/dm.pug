@@ -12,19 +12,19 @@
               if message.id === dm[0].id
                 li.app--message
                   .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
-                    //- img(src='${profile_image_url}')
+                    img(src=' + message.sender.profile_image_url + ')
                   |                
                   p.app--message--text #{message.text} 
                   |                 
-                  p.app--message--timestamp #{message.sender.created_at}
+                  p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
                 |               
               else
                 li.app--message--me
                   .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
-                    img(src='../public/images/m-spore.png')
+                    img(src=' + message.sender.profile_image_url + ')
                   |             
                   p.app--message--text
                     | #{message.text}
                   |             
-                  p.app--message--timestamp #{message.sender.created_at}
+                  p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
                 | 

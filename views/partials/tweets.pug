@@ -4,7 +4,7 @@
       if timeline
         each tweet in timeline
           li
-            strong.app--tweet--timestamp #{tweet.created_at}
+            strong.app--tweet--timestamp #{tweet.created_at.substring(0, 16)} #{tweet.created_at.substring(26)}
             a.app--tweet--author
               .app--avatar(style='background-image: url(' + timeline[0].user.profile_image_url_https + ')')
                 //- img(src='${timeline.user.profile_image_url}')
