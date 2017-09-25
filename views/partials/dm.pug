@@ -16,7 +16,7 @@
                   |                
                   p.app--message--text #{message.text} 
                   |                 
-                  p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
+                  p.app--message--timestamp #{message.created_at.substring(0, 16)} #{message.created_at.substring(26)}
                 |               
               else
                 li.app--message--me
@@ -26,5 +26,5 @@
                   p.app--message--text
                     | #{message.text}
                   |             
-                  p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
+                  p.app--message--timestamp #{message.created_at.substring(0, 16)} #{message.created_at.substring(26)}
                 | 

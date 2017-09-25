@@ -52,6 +52,7 @@ tweet.get('direct_messages', { count: 5 })
 	.then(function (result) {
 		dm = result.data;
 		let sender_time = dm[0].sender.created_at;
+		// console.log(dm[0]);
 	});
 
 app.use('/', (req, res, next) => {
