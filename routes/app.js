@@ -13,18 +13,20 @@ app.use('/static', express.static('public'));
 // This tells express to use Pug:
 app.set('view engine', 'pug');
 
+let user_background = [];
 let timeline = [];
 let friends = [];
 let dm = [];
 
 // TODO: Add User Authentication to get UI to work in browser, i.e.-- so links are clickable to Twitter
-/*tweet.get('account/verify_credentials', { skip_status: true })
+tweet.get('account/verify_credentials', { skip_status: true })
 	.catch(function (err) {
 		console.log('caught error', err.message);
 	})
 	.then(function(result) {
-
-	});*/
+		user_background = result.data;
+		console.log(user_background);
+	});
 
 
 // GET statuses/user_timeline
@@ -53,14 +55,14 @@ tweet.get('direct_messages', { count: 5 })
 	.then(function (result) {
 		dm = result.data;
 		let sender_time = dm[0].sender.created_at;
-		console.log(sender_time.substring(0, 16), sender_time.substring(26));
 	});
 
 app.use('/', (req, res, next) => {
 	res.render('layout', {
 		timeline: timeline,
 		friends: friends,
-		dm: dm
+		dm: dm,
+		user_background: user_background
 	});
 	next();
 });

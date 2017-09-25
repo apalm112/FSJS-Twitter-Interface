@@ -1,35 +1,30 @@
-|       
 .grid-33
-  .app--section--heading
-    h2 Direct Messages
-  |     
-  .grid-33
-    .app--section
-      ul.app--message--list
-        li
-          h3
-            | Conversation with 
-            a #{timeline[0].user.name}
-          |             
-          ul.app--message--conversation
-            if dm
-              each message in dm
-                if message.id === dm[0].id
-                  li.app--message
-                    .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
-                      img(src=' + message.sender.profile_image_url + ')
-                    |                
-                    p.app--message--text #{message.text} 
-                    |                 
-                    p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
-                  |               
-                else
-                  li.app--message--me
-                    .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
-                      img(src=' + message.sender.profile_image_url + ')
-                    |             
-                    p.app--message--text
-                      | #{message.text}
-                    |             
-                    p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
-                  | 
+  .app--section
+    ul.app--message--list
+      li
+        h3
+          | Conversation with 
+          a #{timeline[0].user.name}
+        |             
+        ul.app--message--conversation
+          if dm
+            each message in dm
+              if message.id === dm[0].id
+                li.app--message
+                  .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
+                    img(src=' + message.sender.profile_image_url + ')
+                  |                
+                  p.app--message--text #{message.text} 
+                  |                 
+                  p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
+                |               
+              else
+                li.app--message--me
+                  .app--avatar(style='background-image: url(' + message.sender.profile_image_url + ')')
+                    img(src=' + message.sender.profile_image_url + ')
+                  |             
+                  p.app--message--text
+                    | #{message.text}
+                  |             
+                  p.app--message--timestamp #{message.sender.created_at.substring(0, 16)} #{message.sender.created_at.substring(26)}
+                | 

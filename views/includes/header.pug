@@ -1,5 +1,5 @@
 header
-  header.circle--header
+  header.circle--header(style='background-image: url(' + user_background.profile_banner_url + ')')
     .bounds
       .circle--fluid
         .circle--fluid--cell
@@ -18,20 +18,3 @@ header
             ul.circle--inline
               li
                 a Sign Out
-  |   
-  //- .bounds.app--body
-  //-   .app--section--header
-  //-     .grid-33
-  //-       .app--section--heading
-  //-         h2 Timeline
-  //-     |       
-  //-     .grid-33
-  //-       .app--section--heading
-  //-         strong #{timeline[0].user.friends_count}
-  //-         |           
-  //-         h2 Following
-  //-     |       
-  //-     .grid-33
-  //-       .app--section--heading
-  //-         h2 Direct Messages
-  //-   |     
