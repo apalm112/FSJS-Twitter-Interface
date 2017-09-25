@@ -18,16 +18,13 @@ let timeline = [];
 let friends = [];
 let dm = [];
 
-// TODO: Add User Authentication to get UI to work in browser, i.e.-- so links are clickable to Twitter
 tweet.get('account/verify_credentials', { skip_status: true })
 	.catch(function (err) {
 		console.log('caught error', err.message);
 	})
 	.then(function(result) {
 		user_background = result.data;
-		console.log(user_background);
 	});
-
 
 // GET statuses/user_timeline
 tweet.get('statuses/user_timeline', { count: 5, exclude_replies: true })
@@ -71,11 +68,7 @@ app.listen(port, () => {
 	console.log(`The application is running on localhost:${port}`);
 });
 
-//	TODO The template
-// It should also include your profile image at the top of the screen.
-
 /*	TODO: Push Goals:
 Add a section to the bottom of your page that allows a user to post a new tweet. The new tweet should display without having to refresh the page.
 Add an error page to your application, so that if anything goes wrong with your routes, the user will see a friendly message rendered, instead of the default error code.
-Include your personal background image from Twitter as a background for the page header.
 */
