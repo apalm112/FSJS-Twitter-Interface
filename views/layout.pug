@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Twitter Client
+    meta(name='description', content='')
+    meta(name='author', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://fonts.googleapis.com/css?family=Work+Sans:400,600', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='static/css/global.css')
+  body
+    include includes/header.pug
+    |   
+    .bounds.app--body
+      .app--section--header
+        .grid-33
+          .app--section--heading
+            h2 Timeline
+        |       
+        .grid-33
+          .app--section--heading
+            strong #{timeline[0].user.friends_count}
+            |           
+            h2 Following
+        |       
+        .grid-33
+          .app--section--heading
+            h2 Direct Messages
+      |   
+      include partials/tweets.pug
+      include partials/friends.pug
+      include partials/dm.pug
+    include includes/footer.pug
