@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const tweet = require('./my-config');
+const tweet = require('./config');
 const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 4000;
@@ -51,25 +51,17 @@ tweet.get('direct_messages', { count: 5 })
 	})
 	.then(function (result) {
 		dm = result.data;
-		let sender_time = dm[0].sender.created_at;
-		// console.log(dm[0]);
 	});
 
-app.use('/', (req, res, next) => {
+app.use('/', (req, res) => {
 	res.render('layout', {
 		timeline: timeline,
 		friends: friends,
 		dm: dm,
 		user_background: user_background
 	});
-	next();
 });
 
 app.listen(port, () => {
 	console.log(`The application is running on localhost:${port}`);
 });
-
-/*	TODO: Push Goals:
-Add a section to the bottom of your page that allows a user to post a new tweet. The new tweet should display without having to refresh the page.
-Add an error page to your application, so that if anything goes wrong with your routes, the user will see a friendly message rendered, instead of the default error code.
-*/
