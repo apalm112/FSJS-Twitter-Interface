@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const tweet = require('./config');
+const tweet = require('./my-config');
 const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 4000;
@@ -17,6 +17,7 @@ let user_background = [];
 let timeline = [];
 let friends = [];
 let dm = [];
+let user_name = '';
 
 tweet.get('account/verify_credentials', { skip_status: true })
 	.catch(function (err) {
@@ -24,19 +25,22 @@ tweet.get('account/verify_credentials', { skip_status: true })
 	})
 	.then(function(result) {
 		user_background = result.data;
+
 	});
 
 // GET statuses/user_timeline
+// TODO: Number of tweets showing in timeline is not showing five tweets
 tweet.get('statuses/user_timeline', { count: 5, exclude_replies: true })
 	.catch(function (err) {
 		console.log('caught errror', err.message);
 	})
 	.then(function (result) {
 		timeline = result.data;
+		user_name = result.data[0].user.screen_name;
 	});
 
 // GET friends/ids
-tweet.get('friends/list', { screen_name: '@apalm112', count: 5 })
+tweet.get('friends/list', { screen_name: user_name, count: 5 })
 	.catch(function (err) {
 		console.log('caught errror', err.message);
 	})
