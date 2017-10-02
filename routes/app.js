@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const tweet = require('./my-config');
+const tweet = require('./config');
 const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 4000;
