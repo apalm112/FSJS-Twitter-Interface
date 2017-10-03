@@ -4,7 +4,7 @@
   "description": "Project 7: A twitter app that shows my twitter stuff.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha"
+		"start": "node routes/app.js"
   },
   "repository": {
     "type": "git",

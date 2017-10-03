@@ -25,11 +25,9 @@ tweet.get('account/verify_credentials', { skip_status: true })
 	})
 	.then(function(result) {
 		user_background = result.data;
-
 	});
 
 // GET statuses/user_timeline
-// TODO: Number of tweets showing in timeline is not showing five tweets
 tweet.get('statuses/user_timeline', { count: 5, exclude_replies: true })
 	.catch(function (err) {
 		console.log('caught errror', err.message);
